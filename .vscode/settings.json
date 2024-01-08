@@ -1,0 +1,13 @@
+{
+	"editor.formatOnSave": true,
+	"files.exclude": {
+		"app/go.mod": true
+	},
+	"go.coverOnSave": true,
+	"go.coverageDecorator": {
+		"coveredGutterStyle": "slashgreen",
+		"uncoveredGutterStyle": "slashred",
+		"type": "gutter"
+	},
+	"go.testOnSave": true
+}

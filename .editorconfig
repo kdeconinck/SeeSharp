@@ -29,3 +29,8 @@ root = true
 # Configuration for ALL files.
 [*]
 insert_final_newline = true
+
+# Use a 4 character wide TAB for indenting JSON file(s).
+[*.json]
+indent_size = 4
+indent_style = tab
