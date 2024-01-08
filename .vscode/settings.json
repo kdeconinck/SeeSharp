@@ -1,7 +1,8 @@
 {
 	"editor.formatOnSave": true,
 	"files.exclude": {
-		"app/go.mod": true
+		"app/**/go.mod": true,
+		"app/**/go.work": true
 	},
 	"go.coverOnSave": true,
 	"go.coverageDecorator": {
