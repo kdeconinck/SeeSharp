@@ -32,7 +32,7 @@ import (
 )
 
 // Equal compares got against want for equality.
-// If they are not equal, t is marked as failed, and it's execution is terminated.
+// If they are not equal, tb is marked as failed, and it's execution is terminated.
 func Equal[V comparable](tb testing.TB, got, want V, name string, msg ...any) {
 	tb.Helper()
 
@@ -42,6 +42,7 @@ func Equal[V comparable](tb testing.TB, got, want V, name string, msg ...any) {
 }
 
 // EqualS compares got against want for equality.
+// If they are not equal, tb is marked as failed, and it's execution is terminated.
 func EqualS[S ~[]E, E comparable](tb testing.TB, got, want S, name string, msg ...any) {
 	tb.Helper()
 
