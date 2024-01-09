@@ -14,6 +14,10 @@
 		{
 			"name": "Maps (github.com/kdeconinck/maps)",
 			"path": "app/maps"
+		},
+		{
+			"name": "Paths (github.com/kdeconinck/paths)",
+			"path": "app/paths"
 		}
 	],
 	"settings": {}

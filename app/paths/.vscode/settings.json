@@ -1,12 +1,7 @@
 {
 	"editor.formatOnSave": true,
 	"files.exclude": {
-		"app/assert/": true,
-		"app/camelcase/": true,
-		"app/maps/": true,
-		"app/paths/": true,
-		"app/go.mod": true,
-		"app/go.work": true
+		"go.mod": true,
 	},
 	"go.coverOnSave": true,
 	"go.coverageDecorator": {
