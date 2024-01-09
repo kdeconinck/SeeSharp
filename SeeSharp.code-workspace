@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Assert (github.com/kdeconinck/assert)",
+			"path": "app/assert"
+		},
+		{
+			"name": "CamelCase (github.com/kdeconinck/camelcase)",
+			"path": "app/camelcase"
+		},
+		{
+			"name": "Maps (github.com/kdeconinck/maps)",
+			"path": "app/maps"
+		}
+	],
+	"settings": {}
+}
