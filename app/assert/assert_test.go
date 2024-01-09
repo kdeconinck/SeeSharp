@@ -61,7 +61,7 @@ func TestEqual(t *testing.T) {
 		nameInput           string
 		want                string
 	}{
-		"When `got` and `want` are NOT.": {
+		"When `got` and `want` are NOT equal.": {
 			gotInput: false, wantInput: true,
 			nameInput: "IsDigit(\"0\")",
 			want:      "IsDigit(\"0\") = false, want true",
