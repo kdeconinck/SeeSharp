@@ -6,4 +6,5 @@ use (
 	./gosentence
 	./maps
 	./paths
+	./xunit
 )

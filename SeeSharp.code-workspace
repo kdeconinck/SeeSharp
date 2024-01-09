@@ -22,6 +22,10 @@
 		{
 			"name": "Paths (github.com/kdeconinck/paths)",
 			"path": "app/paths"
+		},
+		{
+			"name": "xUnit (github.com/kdeconinck/xunit)",
+			"path": "app/xunit"
 		}
 	],
 	"settings": {}
