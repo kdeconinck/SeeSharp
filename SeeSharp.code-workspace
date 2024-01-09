@@ -12,6 +12,10 @@
 			"path": "app/camelcase"
 		},
 		{
+			"name": "Go Sentence (github.com/kdeconinck/gosentence)",
+			"path": "app/gosentence"
+		},
+		{
 			"name": "Maps (github.com/kdeconinck/maps)",
 			"path": "app/maps"
 		},
