@@ -51,6 +51,16 @@ func Equal[V comparable](tb testing.TB, got, want V, name string, msg ...any) {
 	}
 }
 
+// EqualFn compares got against want for equality using a custom comparison function.
+// If they are not equal, tb is marked as failed, and it's execution is terminated.
+func EqualFn[V any](tb testing.TB, got, want V, cmpFn func(got, want V) bool, name string, msg ...any) {
+	tb.Helper()
+
+	if !cmpFn(got, want) {
+		failT(tb, got, want, name, "%s = %v, want %v", msg...)
+	}
+}
+
 // EqualS compares got against want for equality.
 // If they are not equal, tb is marked as failed, and it's execution is terminated.
 func EqualS[S ~[]E, E comparable](tb testing.TB, got, want S, name string, msg ...any) {

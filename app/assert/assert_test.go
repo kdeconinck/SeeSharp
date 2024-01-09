@@ -163,6 +163,59 @@ func TestEqualWithCustomMessage(t *testing.T) {
 	}
 }
 
+// UT: Compare 2 values for equality using a custom comparison function.
+func TestEqualFn(t *testing.T) {
+	t.Parallel() // Enable parallel execution.
+
+	for tcName, tc := range map[string]struct {
+		gotInput, wantInput bool
+		nameInput           string
+		want                string
+	}{
+		"When `got` and `want` are NOT equal.": {
+			gotInput: false, wantInput: true,
+			nameInput: "IsDigit(\"0\")",
+			want:      "IsDigit(\"0\") = false, want true",
+		},
+		"When `got` and `want` are equal.": {
+			gotInput: true, wantInput: true,
+			nameInput: "IsDigit(\"0\")",
+		},
+	} {
+		t.Run(tcName, func(t *testing.T) {
+			tc := tc     // Rebind the `tc` variable. Required to support parallel exceution.
+			t.Parallel() // Enable parallel execution.
+
+			// ARRANGE.
+			testingT := &testableT{TB: t}
+
+			// ACT.
+			assert.EqualFn(testingT, tc.gotInput, tc.wantInput, func(got, want bool) bool { return got == want }, tc.nameInput)
+
+			// ASSERT.
+			if testingT.failureMsg != tc.want {
+				t.Fatalf("Failure message = \"%s\", want \"%s\"", testingT.failureMsg, tc.want)
+			}
+		})
+	}
+}
+
+// UT: Compare 2 values for equality using a custom comparison function (with a custom message).
+func TestEqualFnWithCustomMessage(t *testing.T) {
+	t.Parallel() // Enable parallel execution.
+
+	// ARRANGE.
+	testingT := &testableT{TB: t}
+
+	// ACT.
+	assert.EqualFn(testingT, false, true, func(got, want bool) bool { return got == want }, "", "UT Failed: `IsDigit(\"0\")` - got %t, want %t.", false, true)
+
+	// ASSERT.
+	if testingT.failureMsg != "UT Failed: `IsDigit(\"0\")` - got false, want true." {
+		t.Fatalf("Failure message = \"%s\", want \"%s\"", testingT.failureMsg, "UT Failed: `IsDigit(\"0\")` - got false, want true.")
+	}
+}
+
 // UT: Compare 2 slices for equality.
 func TestEqualS(t *testing.T) {
 	t.Parallel() // Enable parallel execution.
