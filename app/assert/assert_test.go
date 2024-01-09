@@ -27,6 +27,7 @@
 package assert_test
 
 import (
+	"errors"
 	"fmt"
 	"testing"
 
@@ -56,7 +57,7 @@ func TestEqual(t *testing.T) {
 	t.Parallel() // Enable parallel execution.
 
 	for tcName, tc := range map[string]struct {
-		gotInput, wantInput bool
+		gotInput, wantInput any
 		nameInput           string
 		want                string
 	}{
@@ -68,6 +69,11 @@ func TestEqual(t *testing.T) {
 		"When `got` and `want` are equal.": {
 			gotInput: true, wantInput: true,
 			nameInput: "IsDigit(\"0\")",
+		},
+		"When comparing `got` against `nil`.": {
+			gotInput: errors.New("IO Error"), wantInput: nil,
+			nameInput: "GetErr(nil)",
+			want:      "GetErr(nil) = IO Error, want <nil>",
 		},
 	} {
 		t.Run(tcName, func(t *testing.T) {
