@@ -52,6 +52,59 @@ func (t *testableT) Failed() bool {
 	return t.isFailed
 }
 
+// UT: Compare a value against `<nil>` for equality.
+func TestNotNil(t *testing.T) {
+	t.Parallel() // Enable parallel execution.
+
+	for tcName, tc := range map[string]struct {
+		gotInput  any
+		nameInput string
+		want      string
+	}{
+		"When `got` is NOT `<nil>`.": {
+			gotInput:  errors.New("IO Error"),
+			nameInput: "GetErr(errors.New(\"IO Error\"))",
+		},
+		"When `got` is `<nil>`.": {
+			gotInput:  nil,
+			nameInput: "GetErr(nil)",
+			want:      "GetErr(nil) = <nil>, want NOT <nil>",
+		},
+	} {
+		t.Run(tcName, func(t *testing.T) {
+			tc := tc     // Rebind the `tc` variable. Required to support parallel exceution.
+			t.Parallel() // Enable parallel execution.
+
+			// ARRANGE.
+			testingT := &testableT{TB: t}
+
+			// ACT.
+			assert.NotNil(testingT, tc.gotInput, tc.nameInput)
+
+			// ASSERT.
+			if testingT.failureMsg != tc.want {
+				t.Fatalf("Failure message = \"%s\", want \"%s\"", testingT.failureMsg, tc.want)
+			}
+		})
+	}
+}
+
+// UT: Compare a value against `<nil>` for equality (with a custom message).
+func TestNotNilWithCustomMessage(t *testing.T) {
+	t.Parallel() // Enable parallel execution.
+
+	// ARRANGE.
+	testingT := &testableT{TB: t}
+
+	// ACT.
+	assert.NotNil(testingT, nil, "", "UT Failed: `GetErr(Error.New(\"IO Error\"))` - got `%s`, want NOT <nil>.", "IO Error")
+
+	// ASSERT.
+	if testingT.failureMsg != "UT Failed: `GetErr(Error.New(\"IO Error\"))` - got `IO Error`, want NOT <nil>." {
+		t.Fatalf("Failure message = \"%s\", want \"%s\"", testingT.failureMsg, "UT Failed: GetErr(Error.New(\"IO Error\"))` - got `IO Error`, want NOT <nil>.")
+	}
+}
+
 // UT: Compare 2 values for equality.
 func TestEqual(t *testing.T) {
 	t.Parallel() // Enable parallel execution.

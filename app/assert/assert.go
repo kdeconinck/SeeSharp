@@ -31,6 +31,16 @@ import (
 	"testing"
 )
 
+// NotNil compares got against nil.
+// If they are equal, t is marked as failed, and it's execution is terminated.
+func NotNil(tb testing.TB, got any, name string, msg ...any) {
+	tb.Helper()
+
+	if got == nil {
+		failT(tb, got, "NOT <nil>", name, "%s = %v, want %s", msg...)
+	}
+}
+
 // Equal compares got against want for equality.
 // If they are not equal, tb is marked as failed, and it's execution is terminated.
 func Equal[V comparable](tb testing.TB, got, want V, name string, msg ...any) {
