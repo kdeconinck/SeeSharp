@@ -1,7 +1,14 @@
 {
 	"editor.formatOnSave": true,
 	"files.exclude": {
-		"app/": true
+		"assert/": true,
+		"camelcase/": true,
+		"gosentence/": true,
+		"maps/": true,
+		"paths/": true,
+		"xunit/": true,
+		"go.mod": true,
+		"go.work": true
 	},
 	"go.coverOnSave": true,
 	"go.coverageDecorator": {

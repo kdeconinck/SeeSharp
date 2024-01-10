@@ -1,7 +1,12 @@
 {
 	"folders": [
 		{
+			"name": "Repository",
 			"path": "."
+		},
+		{
+			"name": "SeeSharp (CLI)",
+			"path": "./app/"
 		},
 		{
 			"name": "Assert (github.com/kdeconinck/assert)",
